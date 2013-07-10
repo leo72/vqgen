@@ -14,11 +14,11 @@
  */
 
 // Set the default file paths relative to this file
-define('LOG', '../vqmod/logs/'); // relative location of vqmod log files folder
+define('LOG', '../../vqmod/logs/'); // relative location of vqmod log files folder
 define('LOGMAX', 10); // max viewale size in MB of log file
-define('PATH', '../vqmod/xml/'); // relative path to the vqmod xml folder
-define('CACHE', '../vqmod/vqcache/'); // relative path to the vqmod cache folder
-define('MODSCACHE', '../vqmod/mods.cache'); // relative path to the vqmod mods.cache file
+define('PATH', '../../vqmod/xml/'); // relative path to the vqmod xml folder
+define('CACHE', '../../vqmod/vqcache/'); // relative path to the vqmod cache folder
+define('MODSCACHE', '../../vqmod/mods.cache'); // relative path to the vqmod mods.cache file
 
 if (!ini_get('date.timezone')) {
 	date_default_timezone_set('UTC');
