@@ -146,12 +146,12 @@ if(!isset($_POST['generatexml'])&&!isset($_GET['file'])){
 <?php if(count(cache_list(CACHE))){ ?>
 <optgroup label="vqmod/vqcache/">
  <?php foreach(cache_list(CACHE) as $val){ ?>
- <option value="<?php echo $val; ?>"<?php if($val == $_GET['vqcachefile']){ ?> selected="selected"<?php } ?>><?php echo $val; ?></option>
+ <option value="<?php echo $val; ?>"<?php if(isset($_GET['vqcachefile']) && $val == $_GET['vqcachefile']){ ?> selected="selected"<?php } ?>><?php echo $val; ?></option>
 <?php } ?>
 </optgroup>
 <?php } ?>
 <optgroup label="vqmod/">
- <option value="mods.cache"<?php if('mods.cache' == $_GET['vqcachefile']){ ?> selected="selected"<?php } ?>>mods.cache</option>
+ <option value="mods.cache"<?php if(isset($_GET['vqcachefile']) && 'mods.cache' == $_GET['vqcachefile']){ ?> selected="selected"<?php } ?>>mods.cache</option>
 </optgroup>
 </select><?php if(isset($_GET['vqcachefile'])&&$_GET['vqcachefile']!=''&&$_GET['vqcachefile']!='mods.cache'){ ?> <a href="./?deletevqcachefile=<?php echo $_GET['vqcachefile']; ?>"><img src="images/delete.png" width="16" height="16" alt="" title="<?php echo DELETE; ?>"></a><?php } ?><br><br>
 
@@ -760,7 +760,7 @@ $(function(){
 
 	$('.handle3').click(function() {
 		$.ajax({
-			url : "vqcachefile.php?cachefile=<?php echo (isset($_GET['vqcachefile'])&&$_GET['vqcachefile']=='mods.cache'?MODSCACHE:CACHE . $_GET['vqcachefile']); ?>",
+			url : "vqcachefile.php?cachefile=<?php echo ( (!isset($_GET['vqcachefile'])|| $_GET['vqcachefile']=='mods.cache')?MODSCACHE:CACHE . $_GET['vqcachefile']); ?>",
 			dataType: "json",
 			success: function(data){
 				$("#cache").val(data);
@@ -769,7 +769,7 @@ $(function(){
 	});
 	
 	$('#add3').click(function() {
-		location.href = '<?php echo './?enable=' .$_GET['file']; ?>';
+		location.href = '<?php echo './?enable=' .@$_GET['file']; ?>';
 	});
 	
 	$('#file_list').change(function() {
